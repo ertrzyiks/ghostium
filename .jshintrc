@@ -18,6 +18,7 @@
   "globals": {
     "$": false,
     "jQuery": false,
-    "Modernizr": false
+    "Modernizr": false,
+    "Prism": false
   }
 }
