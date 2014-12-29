@@ -20,6 +20,7 @@ module.exports = function(grunt) {
     assets: '/assets',
     bower: grunt.file.readJSON('.bowerrc').directory,
     sass: '<%= dir.assets %>/_scss',
+    less: '<%= dir.assets %>/_less',
     css: '<%= dir.assets %>/css',
     js: '<%= dir.assets %>/js',
     images: '<%= dir.assets %>/img',
@@ -220,6 +221,20 @@ module.exports = function(grunt) {
     },
 
     /**
+     * Compile LESS files
+     */
+    less: {
+      build: {
+          files: [{
+              expand: true,
+              cwd: '<%= dir.src %><%= dir.less %>',
+              src: '*.less',
+              dest: '<%= dir.tmp %><%= dir.css %>',
+              ext: '.css'
+          }]
+      }
+    },
+    /**
      * Compile Sass/SCSS files
      * Compiles all Sass/SCSS files
      */
@@ -391,6 +406,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', 'Compile and compress everything', [
     'clean:build',
     'sass:build',
+    'less:build',
     'useminPrepare',
     'concat',
     'cssmin',
