@@ -28,6 +28,22 @@
     // =================
     Prism.languages.html = Prism.languages.markup;
 
+    var _skrollrHandler = function () {
+        if (!window.skrollr) {
+            return;
+        }
+
+        console.log('SKROLLR REFRESH');
+
+        if (window._skrollrObj) {
+            window._skrollrObj.refresh();
+        } else {
+            window._skrollrObj = skrollr.init();
+        }
+    };
+
+    _skrollrHandler();
+
     var _prismHandler = function() {
       $('code').not('[class*="language-"]').addClass(function() {
         var _lang = $(this).attr('class')  || 'markup';
@@ -112,6 +128,7 @@
         _gaHandler();
         _disqusCounterHandler();
         _prismHandler();
+        _skrollrHandler();
 
         $('[data-load-image]', $content).each(function() {
           ImageLoader.load($(this));
